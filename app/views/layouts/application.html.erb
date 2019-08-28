@@ -8,12 +8,11 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-     <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <a class="navbar-brand" href="#">Flixter</a>
-
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
           <li class="nav-item active">
@@ -32,7 +31,12 @@
         </form>
       </div>
     </nav>
-
+    <% if notice.present? %>
+      <p class="alert alert-info"><%= notice %></p>
+    <% end %>
+    <% if alert.present? %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
