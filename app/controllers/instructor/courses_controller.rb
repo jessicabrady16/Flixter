@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-
+#instructor!!!!!!
 class Instructor::CoursesController < ApplicationController
   def new
   @course = Course.new
