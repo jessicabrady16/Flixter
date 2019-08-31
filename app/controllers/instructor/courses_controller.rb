@@ -1,8 +1,11 @@
 # frozen_string_literal: true
-#instructor!!!!!!
+
+# instructor!!!!!!
 class Instructor::CoursesController < ApplicationController
+  before_action :authenticate_user!
+
   def new
-  @course = Course.new
+    @course = Course.new
   end
 
   def create
@@ -16,6 +19,9 @@ class Instructor::CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
+    if @course.user != current_user
+      return render plain: 'Unauthorized', status: :unauthorized
+    end
   end
 
   private

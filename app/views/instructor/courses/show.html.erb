@@ -4,25 +4,26 @@
   <br />
   <div class ="text-center">
     <h1 class="text-center bold">Sections:<span class = "underline bold"></span>     <span> <%= link_to 'Add a new section...', new_instructor_course_section_path(@course), class: 'btn btn-primary btn-md' %> </span> </h1>
-  <br />
+    <br />
     <ul>
       <% @course.sections.each do |section| %>
         <li class= "list smallerText">
-          <%= section.title %> <span class= 'text-center'> <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-md' %> </span>
+          <%= section.title %> <span class= 'text-center'> <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-md' %> </span>
+            <li class = 'list'>
           <% section.lessons.each do |lesson| %>
-            <li>
+
               <b><%= lesson.title %></b>
               -
               <%= lesson.subtitle %>
-            </li>
+
           <% end %>
-        </ul>
-        <br class="clr" />
-      </li>
-    <% end %>
-  </ul>
+            </li>
+          <br class="clr" />
+        </li>
+      <% end %>
+    </ul>
   </div>
-    <br />
+  <br />
   <h1 class="text-center smallerText"> <span class = "underline bold"> Course Description:</span> <span> "<%= @course.description %>"</span> </h1>
   <br />
   <h1 class="text-center evenSmallerText"><span class = "underline bold">Course cost:</span> <span>  <%= number_to_currency(@course.cost) %></span></h1>

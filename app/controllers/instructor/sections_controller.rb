@@ -1,16 +1,22 @@
 # frozen_string_literal: true
 
 class Instructor::SectionsController < ApplicationController
+  before_action :authenticate_user!
+
   def new
     @course = Course.find(params[:course_id])
+    if @course.user != current_user
+      return render plain: 'Unauthorized', status: :unauthorized
+    end
+
     @section = Section.new
    end
-   
-   def create
+
+  def create
     @course = Course.find(params[:course_id])
     @section = @course.sections.create(section_params)
     redirect_to instructor_course_path(@course)
-  end
+ end
 
   private
 
