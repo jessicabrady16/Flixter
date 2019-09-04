@@ -19,9 +19,16 @@
   font-size: 30px;
 }
 
+.pad_left {
+  padding-left: 40px;
+}
 .evenSmallerText {
   font-size: 20px;
 }
+.italic {
+  font-style: italic;
+}
+
 .bold {
   font-weight: bold;
 }
@@ -46,6 +53,11 @@
   margin-bottom: 30px;
   font-family: 'Merriweather', serif;
   color: black;
+}
+
+.booyah-box .booyah-box-item {
+  border: 1px solid black;
+  margin-bottom: 15px;
 }
 
 .invalid-feedback {

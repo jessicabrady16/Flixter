@@ -3,15 +3,33 @@
   <h1><%= @course.title %></h1>
   <br />
   <div class="row">
-    <div class="col-sm-4 col-12 text-center">
+    <div class="col-sm-3 col-12 text-center">
       <h4 class = 'underline' > Cost: </h4>
+      <br />
       <span class="badge badge-default">
         <%= number_to_currency @course.cost %>
       </span>
     </div>
-    <div class="col-sm-8 col-12">
+    <div class="col-sm-4 col-12">
       <h4 class = 'underline' > Description: </h4>
+      <br />
       <%= @course.description %>
+    </div>
+    <div class="col-sm-5 col-12">
+      <h4 class = 'underline' > Sections: </h4>
+      <br />
+        <% @course.sections.each do |section| %>
+        <li class = 'bold italic'> <%= section.title %> </li>
+        <% section.lessons.each do |lesson| %>
+          <div class="pad_left">
+          -
+          <b><%= lesson.title %></b>
+          -
+          <%= lesson.subtitle %>
+          <br />
+        <% end %>
+      </div>
+        <% end %>
     </div>
     <br />
     <br />
@@ -19,7 +37,7 @@
       <br />
       <br />
       <%= link_to 'Adminstrator', instructor_course_path(@course), class: 'btn btn-danger btn-large'  %>
-    <%end%>
+    <% end %>
     <%= link_to 'Learn More', courses_path, class: 'btn btn-success' %>
   </div>
 </div>

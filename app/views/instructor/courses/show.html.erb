@@ -1,32 +1,33 @@
 <br />
 <div class="booyah-box col-10 offset-1">
-  <h1 class="text-center"> <span class = "underline bold"> Course Title:</span> <span> "<%= @course.title %>" <%= link_to 'Preview As Student...', course_path(@course), class: 'btn btn-warning' %> </span> </h1>
+  <h1 class="text-center"> <span class = "underline bold"> Course Title:</span> <span> "<%= current_course.title %>" <%= link_to 'Preview As Student...', course_path(current_course), class: 'btn btn-warning' %> </span> </h1>
   <br />
   <div class ="text-center">
-    <h1 class="text-center bold">Sections:<span class = "underline bold"></span>     <span> <%= link_to 'Add a new section...', new_instructor_course_section_path(@course), class: 'btn btn-primary btn-md' %> </span> </h1>
+    <h1 class="text-center bold">Sections:<span class = "underline bold"></span>     <span> <%= link_to 'Add a new section...', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-md' %> </span> </h1>
     <br />
-    <ul>
-      <% @course.sections.each do |section| %>
+    <ul><% current_course.sections.each do |section| %>
         <li class= "list smallerText">
           <%= section.title %> <span class= 'text-center'> <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-md' %> </span>
             <li class = 'list'>
-          <% section.lessons.each do |lesson| %>
+          <% if section.lessons.length > 0 %>
+            <% section.lessons.each do |lesson| %>
 
-              <b><%= lesson.title %></b>
-              -
-              <%= lesson.subtitle %>
+                <b><%= lesson.title %></b>
+                -
+                <%= lesson.subtitle %>
 
-          <% end %>
+            <% end %>
             </li>
+          <% end %>
           <br class="clr" />
         </li>
       <% end %>
     </ul>
   </div>
   <br />
-  <h1 class="text-center smallerText"> <span class = "underline bold"> Course Description:</span> <span> "<%= @course.description %>"</span> </h1>
+  <h1 class="text-center smallerText"> <span class = "underline bold"> Course Description:</span> <span> "<%= current_course.description %>"</span> </h1>
   <br />
-  <h1 class="text-center evenSmallerText"><span class = "underline bold">Course cost:</span> <span>  <%= number_to_currency(@course.cost) %></span></h1>
+  <h1 class="text-center evenSmallerText"><span class = "underline bold">Course cost:</span> <span>  <%= number_to_currency(current_course.cost) %></span></h1>
   <br />
   <br class="clr" />
   <iframe src="https://giphy.com/embed/WP2nRF0qecF9dnEIno" width="270" height="480" frameBorder="0" class="center-block" allowFullScreen></iframe>
