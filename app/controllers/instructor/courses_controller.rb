@@ -19,16 +19,15 @@ class Instructor::CoursesController < ApplicationController
   end
 
   def show
-
   end
 
-  helper_method :current_course
+
 
   private
-
+  helper_method :current_course
   def require_authorized_for_current_course
     if current_course.user != current_user
-      render plain: "Unauthorized", status: :unauthorized
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
@@ -39,5 +38,4 @@ class Instructor::CoursesController < ApplicationController
   def course_params
     params.require(:course).permit(:title, :description, :cost)
   end
-
 end
