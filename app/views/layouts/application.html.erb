@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = 'en'>
   <head>
-    <title>Flixter</title>
+    <title>KitKitVideos</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -13,7 +13,10 @@
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <%= link_to 'Flixter', root_path, class: 'navbar-brand col-2' %>
+        <%= link_to root_path, class: 'nav-link' do %>
+          <%= image_tag 'pawprint.png' %>
+        <% end %>
+        <%= link_to 'KitKitVideos', root_path, class: 'navbar-brand col-2' %>
         <div class="navbar-collapse" id="navbarTogglerDemo02">
           <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <li class="nav-item">

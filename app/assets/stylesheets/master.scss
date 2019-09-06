@@ -22,6 +22,10 @@
 .pad_left {
   padding-left: 40px;
 }
+.pad_left_lg {
+  padding-left: 80px;
+}
+
 .evenSmallerText {
   font-size: 20px;
 }
@@ -39,7 +43,7 @@
 .navbar a.navbar-brand {
   font-family: 'Merriweather', serif;
   font-weight: bold;
-  font-size: 40px;
+  font-size: 30px;
 }
 
 .booyah-box {
@@ -67,7 +71,10 @@
   padding: 2px 8px 2px 8px;
   margin: 10px;
 }
-
+.img-center {
+  margin: auto;
+  display: block;
+}
 
 body {
   background: image_url('movie_res.jpg') no-repeat center center fixed;
