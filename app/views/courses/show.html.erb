@@ -36,27 +36,44 @@
       <br />
       <div class = "row">
         <h5 class = 'underline inline' > Duration:</h5>
-        &nbsp;
-        <> hours
-        </div>
-        <br />
-        <div class = "row">
-          <h5 class = 'underline inline' > Created by: </h5>
+        <div class = inline>
           &nbsp;
-          &nbsp;
-          <div class = "inline"> <%= @course.user.email %> </div>
-        </div>
-        <% if current_user && current_user == @course.user %>
-          <br />
-          <br />
+          <> hours
+            <br />
+            <br />
+          </div>
           <div>
-            <%= link_to 'Adminstrator', instructor_course_path(@course), class: 'btn btn-danger'  %>
-          <% end %>
-          <% if current_user && current_user.enrolled_in?(@course) %>
-           <h5 class= 'inline'> <span class="badge badge-info">You Are Enrolled!</span></h5>
+            <h5 class = 'underline inline' > Created by: </h5>
+            &nbsp;
+            &nbsp;
+            <div class = "inline"> <%= @course.user.email %> </div>
+            <br />
+          </div>
+          <div>
+            <% if current_user && current_user == @course.user %>
+              <%= link_to 'Adminstrator', instructor_course_path(@course), class: 'btn btn-danger'  %>
+            <% end %>
+            <% if current_user %>
+              <% if current_user.enrolled_in?(@course) %>
+                <h5 class= 'inline'> <span class="badge badge-info">You Are Enrolled!</span></h5>
+              <% else %>
+              <% if @course.free? %>
+                <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
+              <% else %>
+                <%= form_tag course_enrollments_path(@course) do %>
+                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                  data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+                  data-email="<%= current_user.email %>"
+                  data-description="<%= @course.title %> (<%= number_to_currency @course.cost %>)"
+                  data-amount="<%= (@course.cost * 100).to_i %>"
+                  data-locale="auto"></script>
+                <% end %>
+              <% end %>
+            <% end %>
           <% else %>
-            <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
-          <% end %>
+            <h3 class="badge badge-info">Sign In to Enroll!</h3>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="col-8  border-left">
@@ -65,14 +82,10 @@
         <%= @course.description %>
       </div>
       <br />
-      <br />
-      <br />
     </div>
     <hr />
     <div class="col-12">
       <% @course.sections.each do |section| %>
-        <br />
-        <br />
         <div class="section">
           <h3>
             <%= section.title %>
@@ -91,9 +104,7 @@
               </div>
             <% end %>
           </div>
-          <br class="clr" />
         </div>
       <% end %>
     </div>
   </div>
-</div>
