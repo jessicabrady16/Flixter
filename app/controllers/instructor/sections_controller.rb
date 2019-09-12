@@ -13,11 +13,18 @@ class Instructor::SectionsController < ApplicationController
     redirect_to instructor_course_path(current_course)
   end
 
+  def destroy
+    puts "this is paramas id #{params[:id]}"
+    @section = current_course.sections.find_by(id: params[:id])
+    @section.destroy
+    redirect_to instructor_course_path(current_course)
+  end
+
   private
 
   def require_authorized_for_current_course
     if current_course.user != current_user
-      render plain: "Unauthorized", status: :unauthorized
+      render plain: "Unauthorized #{current_course.user.email} and #{current_user.email}", status: :unauthorized
     end
   end
 

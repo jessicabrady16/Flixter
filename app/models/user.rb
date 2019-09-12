@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
-  has_many :courses
-  has_many :enrollments
+  has_many :courses, dependent: :destroy
+  has_many :enrollments, dependent: :destroy
   has_many :enrolled_courses, through: :enrollments, source: :course
 
   # Include default devise modules. Others available are:

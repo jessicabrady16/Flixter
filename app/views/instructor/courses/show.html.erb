@@ -15,7 +15,9 @@
     <br />
         <ul><% current_course.sections.each do |section| %>
         <li class= "list smallerText">
-          <%= section.title %> <span class= 'text-center'> <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-md' %> </span>
+          <%= section.title %>  <span class= 'text-center'><%= link_to 'Delete Section', instructor_course_section_path(current_course, section), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things' %></span>
+
+          <span class= 'text-center'>  <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-md' %> </span>
 
           <% if section.lessons.length > 0 %>
           <li class = 'list pad_left'>
@@ -23,12 +25,8 @@
                <b><%= lesson.title %></b>
                 -
                 <%= lesson.subtitle %>
-              <br />
-
+                <br />
             <% end %>
-
-          <% end %>
-          <br class="clr" />
         </li>
       <% end %>
     </ul>
