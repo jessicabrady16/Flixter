@@ -13,6 +13,12 @@ class Instructor::LessonsController < ApplicationController
     redirect_to instructor_course_path(current_section.course)
   end
 
+  def destroy
+    @lesson = current_section.lessons.find_by(id: params[:id])
+    @lesson.destroy
+    redirect_to instructor_course_path(current_course)
+  end
+
   private
 
   def require_authorized_for_current_section
@@ -24,6 +30,10 @@ class Instructor::LessonsController < ApplicationController
   helper_method :current_section
   def current_section
     @current_section ||= Section.find(params[:section_id])
+  end
+
+  def current_course
+    @current_course ||= current_section.course
   end
 
   def lesson_params

@@ -8,31 +8,31 @@
   <br />
   <br class="clr" />
   <% if current_course.image.url %>
-  <%= image_tag current_course.image.url, class: 'img-fluid img-center' %>
+    <%= image_tag current_course.image.url, class: 'img-fluid img-center' %>
   <% end %>
   <div class ="text-center">
     <h1 class="text-center bold">Sections:<span class = "underline bold"></span>     <span> <%= link_to 'Add a new section...', new_instructor_course_section_path(current_course), class: 'btn btn-primary btn-md' %> </span> </h1>
     <br />
-        <ul><% current_course.sections.each do |section| %>
+    <ul><% current_course.sections.each do |section| %>
         <li class= "list smallerText">
           <%= section.title %>  <span class= 'text-center'><%= link_to 'Delete Section', instructor_course_section_path(current_course, section), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things' %></span>
-
           <span class= 'text-center'>  <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-md' %> </span>
 
           <% if section.lessons.length > 0 %>
-          <li class = 'list pad_left'>
-            <% section.lessons.each do |lesson| %>
-               <b><%= lesson.title %></b>
+            <li class = 'list pad_left'>
+              <% section.lessons.each do |lesson| %>
+                <b><%= lesson.title %></b>
                 -
                 <%= lesson.subtitle %>
+                <%= link_to 'Delete Lesson', instructor_section_lesson_path(section, lesson), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things' %></span>
                 <br />
-            <% end %>
-        </li>
-      <% end %>
-    </ul>
-  </div>
-  <br />
-
-  <iframe src="https://giphy.com/embed/WP2nRF0qecF9dnEIno" width="270" height="480" frameBorder="0" class="center-block" allowFullScreen></iframe>
-  <br />
-</div>
+              <% end %>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+      </div>
+      <br />
+      <iframe src="https://giphy.com/embed/WP2nRF0qecF9dnEIno" width="270" height="480" frameBorder="0" class="center-block" allowFullScreen></iframe>
+      <br />
+    </div>
