@@ -17,22 +17,35 @@
         <li class= "list smallerText">
           <%= section.title %>  <span class= 'text-center'><%= link_to 'Delete Section', instructor_course_section_path(current_course, section), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things' %></span>
           <span class= 'text-center'>  <%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-md' %> </span>
-
           <% if section.lessons.length > 0 %>
-            <li class = 'list pad_left'>
-              <% section.lessons.each do |lesson| %>
-                <b><%= lesson.title %></b>
-                -
-                <%= lesson.subtitle %>
-                <%= link_to 'Delete Lesson', instructor_section_lesson_path(section, lesson), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things' %></span>
+            <ul class="lessons">
+              <% section.lessons.rank(:row_order).each do |lesson| %>
+              <li class = 'list pad_left' data-update-url="<%= instructor_lesson_path(lesson) %>">
+                  <b><%= lesson.title %></b>
+                  -
+                  <%= lesson.subtitle %>
+                  <span><%= link_to 'Delete Lesson', instructor_section_lesson_path(section, lesson), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things' %></span>
                 <br />
+                </li>
               <% end %>
-              <% end %>
-            </li>
+            </ul>
           <% end %>
-        </ul>
-      </div>
-      <br />
-      <iframe src="https://giphy.com/embed/WP2nRF0qecF9dnEIno" width="270" height="480" frameBorder="0" class="center-block" allowFullScreen></iframe>
-      <br />
-    </div>
+      <% end %>
+    </ul>
+  </div>
+     <br />
+  <script>
+  $(function() {
+    $('.lessons').sortable({
+      update: function( event, ui ) {
+        $.ajax({
+          type: 'PUT',
+          url: ui.item.data('update-url'),
+          dataType: 'json',
+          data: { lesson: { row_order_position: ui.item.index() } }
+        });
+      }
+    });
+   });
+</script>
+</div>

@@ -49,6 +49,7 @@
             <div class = "inline"> <%= @course.user.email %> </div>
             <br />
           </div>
+          <br />
           <div>
             <% if current_user && current_user == @course.user %>
               <%= link_to 'Adminstrator', instructor_course_path(@course), class: 'btn btn-danger'  %>
@@ -91,7 +92,7 @@
             <%= section.title %>
           </h3>
           <div class="row">
-            <% section.lessons.each do |lesson| %>
+            <% section.lessons.rank(:row_order).each do |lesson| %>
               <div class="col-12 col-sm-6">
                 <div class="lesson text-center">
                   <br />
