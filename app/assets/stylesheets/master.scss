@@ -1,5 +1,6 @@
 @import "bootstrap";
 @import url('https://fonts.googleapis.com/css?family=Merriweather:400,400i,700|Open+Sans:400,400i,700&display=swap');
+@import "font-awesome";
 
 
 
@@ -93,6 +94,35 @@
   display: inline-block;
 }
 
+.lessons li p {
+  margin: 0;
+}
+
+.lessons li b {
+  font-size: 25px;
+  font-weight: 100;
+}
+
+.lesson_li {
+  list-style-type: none;
+  background: black;
+  color: white;
+  margin: 10px;
+  font-family: 'Merriweather', serif;
+  font-weight: 100;
+  padding: 8px;
+  font-size: 15px;
+}
+.section-li {
+  border: 1px solid;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  padding: 10px;
+  background: white;
+  list-style-type: none;
+  margin: 20px;
+}
+
+
 body {
   background: image_url('cat_movie2.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -165,6 +195,9 @@ h6,
 .pad-left {
   padding-left: 30px;
 }
+ul {
+  list-style-position: inside;
+}
 
 .list {
   list-style-position: inside;
@@ -201,17 +234,4 @@ h6,
   padding: 20px;
 }
 
-.instructor_section_box {
-  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
-  box-shadow: 1px 1px 2px 0 #d0d0d0;
-  background:rgb(255, 255, 255);
-  border: 1px solid #ccc;
-  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  font-family: 'Merriweather', serif;
-  color: black;
-  border-radius: 5px;
-}
 
