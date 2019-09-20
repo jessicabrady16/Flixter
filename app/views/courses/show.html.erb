@@ -20,63 +20,64 @@
         <h5 class = 'underline inline' > Cost:</h5>
         &nbsp;
         &nbsp;
-        <h5 class = "badge badge-primary inline">
+        <h1 class = "badge badge-primary badge_cost inline">
           Human Cost:
           <br />
           <%= number_to_currency @course.cost %>
-        </h5>
+        </h1>
         &nbsp;
         &nbsp;
-        <h5 class = "badge badge-primary inline">
+        <h1 class = "badge badge-primary badge_cost inline">
           Superior Cat Cost:
           <br />
           <span> 🥫<%= (@course.cost/3).to_i %> T.C. (tuna cans) </span>
-        </h5>
+        </h1>
       </div>
       <br />
       <div class = "row">
-        <h5 class = 'underline inline' > Duration:</h5>
-        <div class = inline>
-          &nbsp;
-          <> hours
-            <br />
-            <br />
-          </div>
           <div>
             <h5 class = 'underline inline' > Created by: </h5>
             &nbsp;
             &nbsp;
             <div class = "inline"> <%= @course.user.email %> </div>
             <br />
+</div>
           </div>
           <br />
-          <div>
-            <% if current_user && current_user == @course.user %>
-              <%= link_to 'Adminstrator', instructor_course_path(@course), class: 'btn btn-danger'  %>
-            <% end %>
+
+          <div class = "row">
             <% if current_user %>
               <% if current_user.enrolled_in?(@course) %>
-                <h5 class= 'inline'> <span class="badge badge-info">You Are Enrolled!</span></h5>
+                <h2 class= 'inline'> <span class="badge badge-info">You Are Enrolled!</span></h2>
               <% else %>
               <% if @course.free? %>
-                <%= link_to 'Enroll', course_enrollments_path(@course), class: 'btn btn-primary', method: :post %>
+                <h5 class= "inline"> This class is FREE! (Meow, Lucky You!) </h5> &nbsp; &nbsp;
+
+                <%= link_to 'Enroll Now', course_enrollments_path(@course), class: 'btn btn-primary inline', method: :post %>
               <% else %>
                 <%= form_tag course_enrollments_path(@course) do %>
-                  <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                <h5 class= 'inline underline'> Pay to enroll: </h5>
+                  <script src="https://checkout.stripe.com/checkout.js" class=" inline stripe-button"
                   data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
                   data-email="<%= current_user.email %>"
                   data-description="<%= @course.title %> (<%= number_to_currency @course.cost %>)"
                   data-amount="<%= (@course.cost * 100).to_i %>"
                   data-locale="auto"></script>
                 <% end %>
-              <% end %>
-            <% end %>
-          <% else %>
+                <% end %>
+                <% end %>
+             <% else %>
             <h3 class="badge badge-info">Sign In to Enroll!</h3>
             <% end %>
           </div>
-        </div>
+          <div class = "row">
+      <% if current_user && current_user == @course.user %>
+
+              <%= link_to 'Adminstrator', instructor_course_path(@course), class: 'btn btn-danger btn_admin'  %>
+            <% end %>
       </div>
+      </div>
+
       <div class="col-8  border-left">
         <h4 class = 'underline text-left' > Description: </h4>
         <br />

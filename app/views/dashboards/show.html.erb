@@ -1,0 +1,62 @@
+<br />
+<div class="booyah-box col-10 offset-1">
+  <h1 class= 'text-center'> My Pawsome Dashboard! </h1>
+  <div class="booyah-box col-10 offset-1">
+    <h1>What I'm Learning:</h1>
+    <% if current_user.enrolled_courses.empty? %>
+    <h2 class= text-center> Un-fur-tunately, you aren't enrolled in any pawsome courses! </h2>
+    <br />
+    <h2 class = text-center> Purruse our <%= link_to 'courses!', courses_path, class: 'underline'%>
+    <% end %>
+    <% current_user.enrolled_courses.each do |course| %>
+    <h3 class="text-center underline">
+      <%= link_to course.title, course_path(course) %>
+    </h3>
+    <br />
+   <% if course.image.url%>
+        <%= image_tag course.image.url, class: 'img-fluid' %>
+      <% end %>
+    <br />
+    <div class="row">
+      <div class="col-12 col-sm-8">
+      <br />
+       <h4> <%= course.description %> </h4>
+      </div>
+      <div class="col-12 col-sm-4 text-center">
+        <%= link_to "More Info...", course_path(course), class: 'btn btn-lg btn-primary' %>
+      </div>
+    </div>
+    <hr />
+    <br class="clr" />
+  <% end %>
+   <hr class="thick_hor">
+
+    <h1>What I'm Teaching:</h1>
+    <% if current_user.courses.empty? %>
+    <h2 class= text-center> Un-fur-tunately, you aren't teaching anything! </h2>
+    <br />
+    <h2 class = text-center> Professor kitkit? Sign up to <%= link_to 'teach a course!', new_instructor_course_path, class: "underline" %>
+    <%end%>
+    <% current_user.courses.each do |course| %>
+      <h3 class="text-center underline">
+        <%= link_to course.title, course_path(course) %>
+      </h3>
+      <br />
+      <% if course.image.url%>
+        <%= image_tag course.image.url, class: 'img-fluid' %>
+      <% end %>
+      <br />
+      <div class="row">
+        <div class="col-12 col-sm-8">
+        <br />
+         <h4> <%= course.description %> </h4>
+        </div>
+        <div class="col-12 col-sm-4 text-center">
+          <%= link_to "More Info...", course_path(course), class: 'btn btn-lg btn-primary' %>
+        </div>
+      </div>
+      <hr class="col-8 offset-2">
+      <br class="clr" />
+    <% end %>
+
+</div>

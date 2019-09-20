@@ -18,6 +18,11 @@ class Instructor::CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    @current_course.destroy
+    redirect_to root_path
+  end
+
   def show
   end
 

@@ -14,7 +14,6 @@ class Instructor::SectionsController < ApplicationController
     redirect_to instructor_course_path(current_course)
   end
 
-
   def update
     puts params
     current_section.update_attributes(section_params)
@@ -37,13 +36,13 @@ class Instructor::SectionsController < ApplicationController
 
   def require_authorized_for_current_course
     if current_course.user != current_user
-      render plain: "Unauthorized", status: :unauthorized
+      render plain: 'Unauthorized', status: :unauthorized
     end
   end
 
   helper_method :current_course
   def current_course
-      if params[:course_id]
+    if params[:course_id]
       @current_course ||= Course.find(params[:course_id])
     else
       current_section.course
