@@ -54,10 +54,44 @@
         <%= yield %>
       </div>
       <div id="footer">
-        <div class="container">
-          <h4 class= > Professor KitKit?</h4>
-          <br />
-          <h5><%= link_to 'Teach a Course', new_instructor_course_path, class: "underline" %><h5>
+
+  <div class= "container">
+            <div class="row">
+           <div class="col-12 col-sm-3">
+        <b>Professor KitKit?</b>
+        <br />
+        <%= link_to 'Teach a Course', new_instructor_course_path %>
+        <br />
+        <%= link_to 'My Dashboard', dashboard_path %>
+      </div>
+      <div class="col-12 col-sm-3">
+        <b>About</b>
+        <br />
+        <%= link_to 'Team', team_path %>
+        <br />
+        <%= link_to 'Careers', career_path %>
+        <br />
+        <%= link_to 'Privacy Policy', privacy_path %>
+      </div>
+      <div class="col-12 col-sm-3">
+        <b>Contact</b>
+        <br />
+        Jessicabrady16@gmail.com
+        <br />
+        Boulder, CO 80301
+      </div>
+    <div class="col-12 col-sm-3 social">
+  <b>Social</b>
+   <br />
+    <%= link_to 'http://https://github.com/jessicabrady16' do %>
+    <span class="fa fa-github-square fa-2x social-button"></span>
+  <% end %>
+   <%= link_to 'http://https://github.com/jessicabrady16' do %>
+    <span class="fa fa-linkedin-square fa-2x social-button"></span>
+  <% end %>
+     </div>
+
+    </div>
         </div>
       </div>
       <script src="http://vjs.zencdn.net/5.12.6/video.js"></script>

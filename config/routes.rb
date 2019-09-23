@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   devise_for :users
   resource :dashboard, only: [:show]
   root 'static_pages#index'
-  resources :courses, only: [:index, :show] do
+  get 'privacy', to: 'static_pages#privacy'
+  get 'team', to: 'static_pages#team'
+  get 'career', to: 'static_pages#career'
+    resources :courses, only: [:index, :show] do
     resources :enrollments, only: :create
   end
   resources :lessons, only: [:show]
