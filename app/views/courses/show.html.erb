@@ -15,9 +15,9 @@
     </div>
   </div>
   <div class = "row">
-    <div class="col-4 pad-left">
+    <div class="col-md-4 col-12 pad-left">
       <div class = "row ">
-        <h5 class = 'underline inline' > Cost:</h5>
+        <h3 class = 'underline inline' > Cost:</h3>
         &nbsp;
         &nbsp;
         <h1 class = "badge badge-primary badge_cost inline">
@@ -36,14 +36,14 @@
       <br />
       <div class = "row">
           <div>
-            <h5 class = 'underline inline' > Created by: </h5>
+            <h3 class = 'underline inline' > Created by: </h3>
             &nbsp;
             &nbsp;
-            <div class = "inline"> <%= @course.user.email %> </div>
+            <h4 = "inline"> <%= @course.user.email %> </h4>
             <br />
 </div>
           </div>
-          <br />
+          
 
           <div class = "row">
             <% if current_user %>
@@ -78,7 +78,7 @@
       </div>
       </div>
 
-      <div class="col-8  border-left">
+      <div class="col-md-8 col-12  border-left">
         <h4 class = 'underline text-left' > Description: </h4>
         <br />
         <h3> <%= @course.description %> </h3>

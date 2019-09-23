@@ -20,49 +20,56 @@
     </div>
   </div>
   <div class = "row">
-    <div class="col-4 pad-left">
-      <div class = "row">
-        <h5 class = 'underline inline' > Cost:</h5>
+    <div class="col-md-4 col-12 pad-left">
+      <div class = "row ">
+        <h5 class = 'underline inline bold' > Cost:</h5>
         &nbsp;
         &nbsp;
-        <h5 class = "badge badge-primary inline">
+        <h1 class = "badge badge-primary badge_cost inline">
           Human Cost:
           <br />
-          <%= number_to_currency(current_course.cost) %>
-        </h5>
+          <%= number_to_currency current_course.cost %>
+        </h1>
         &nbsp;
         &nbsp;
-        <h5 class = "badge badge-primary inline">
+        <h1 class = "badge badge-primary badge_cost inline">
           Superior Cat Cost:
           <br />
           <span> 🥫<%= (current_course.cost/3).to_i %> T.C. (tuna cans) </span>
-        </h5>
+        </h1>
       </div>
       <br />
-      <h5 class = 'underline inline' > Created by: </h5>
-      &nbsp;
-      &nbsp;
-      <div class = "inline"> <%= current_course.user.email %> </div>
+      <div class = "row">
+        <div>
+          <h5 class = 'underline inline bold' > Created by: </h5> &nbsp; <h5 class= 'inline bold'> YOU! Professor KitKit!</h5>
+          <br />
+        </div>
+      </div>
       <br />
     </div>
-    <br />
-    <div class="col-8  border-left">
+    <div class="col-md-8 col-12  border-left">
       <h4 class = 'underline text-left' > Description: </h4>
       <br />
-      <%= current_course.description %>
+      <h3> <%= current_course.description %> </h3>
     </div>
     <br />
   </div>
   <hr />
   <div class="col-12">
+   <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#newSectionModal">
+      Add a new section...
+    </button>
     <ul class="sections">
       <% current_course.sections.rank(:row_order).each do |section| %>
         <li data-update-url="<%= instructor_section_path section %>" class= "section-li">
           <h3 class= "inline">
             <span class="fa fa-ellipsis-v"></span>
             <%= section.title %>
-            <span><%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'float-right btn btn-primary btn-sm' %></span>
-            <span> <%= link_to 'Delete Section', instructor_course_section_path(current_course, section), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger btn-sm button_things' %></span>
+            <span><%= link_to 'New Lesson', new_instructor_section_lesson_path(section), class: 'btn btn-primary btn-sm' %></span>
+            &nbsp;
+            &nbsp;
+            <span> <%= link_to 'Delete Section', instructor_course_section_path(current_course, section), method: :delete, data: {confirm: 'Are you sure you want to delete this section?--You will delete all the lessons that go with it.'},class: 'btn btn-danger btn-sm button_things' %></span>
             <br class="clr" />
             <br class="clr" />
           </h3>
@@ -75,14 +82,15 @@
                       <br />
                       <span class="fa fa-ellipsis-v"></span>
                     </div>
-                    <div class="col-11 text-center">
+                    <div class="col-11">
                       <p>
-                        <b><%= lesson.title %></b>
-                        <span><%= link_to 'Delete Lesson', instructor_section_lesson_path(section, lesson), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things btn-sm' %></span>
+                        <h4 class= "bold"><%= lesson.title %></h4>
+                        <span><%= link_to 'Delete Lesson', instructor_section_lesson_path(section, lesson), method: :delete, data: {confirm: 'Are you sure you want to delete this?'},class: 'btn btn-danger button_things btn-sm float-right' %></span>
                       </p>
-                      <p>
+                      <h5>
+                      -
                         <%= lesson.subtitle %>
-                      </p>
+                      </h5>
                     </div>
                   </div>
                 </li>
@@ -119,4 +127,33 @@
       });
      });
   </script>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="newSectionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+         <h4 class="modal-title" id="newSectionModalLabel">Add new section</h4>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for @section, url: instructor_course_sections_path(current_course) do |f| %>
+        <%= f.input :title %>
+        <br />
+        <%= f.submit "Add a section", class: 'btn btn-primary' %>
+        <br />
+        <br />
+     
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+         <%= f.submit "Add a section", class: 'btn btn-primary' %>
+      </div>
+       <% end %>
+    </div>
+  </div>
 </div>

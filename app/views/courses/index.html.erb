@@ -1,7 +1,12 @@
 <br />
-<div class="booyah-box col-10 offset-1">
+<div class="booyah-box opa col-10 offset-1">
   <br />
-  <h1 class="text-center frosty">Check out our pawsome courses!</h1>
+  <div class= 'text-center'>
+  <%= image_tag 'cat1_sm.png', class: 'inline'%>
+  <h1 class="text-center frosty inline">Check out our pawsome courses!</h1>
+  <%= image_tag 'cat2_sm.png', class: 'inline' %>
+  </div>
+
   <hr />
   <% @courses.each do |course| %>
     <div class="booyah-box-item col-10 offset-1">
@@ -10,9 +15,7 @@
         <%= link_to course.title, course_path(course), class: "underline" %>
         <br />
       </h2>
-      <h5 class = 'underline inline' > Created by: </h5>
-       &nbsp; &nbsp;
-      <h5 class= 'inline'> <%= course.user.email %> </h5>
+
       <% if course.image.url%>
         <div>
           <br />
@@ -20,15 +23,19 @@
         </div>
       <% end %>
       <br />
+      <h5 class = 'underline inline' > Created by: </h5>
+       &nbsp; &nbsp;
+      <h5 class= 'inline'> <%= course.user.email %> </h5>
+      <br />
       <div class="row">
-        <div class="col-sm-8 col-12">
-          <br />
+        <div class="col-md-8 col-12">
+
           <br />
           <h4 class = 'underline'> Course Description: </h4>
           <br />
-          <%= course.description %>
+         <h3> <%= course.description %> </h3>
         </div>
-        <div class="col-sm-4 col-12 text-center">
+        <div class="col-md-4 col-12 text-center">
           <br />
           <%= link_to 'More Details...', course_path(course), class: 'btn btn-primary btn-large' %>
         </div>
