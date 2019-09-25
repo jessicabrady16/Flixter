@@ -7,7 +7,12 @@
   color:black;
   font-family: 'Merriweather', serif;
 }
-
+.cat-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
 .modal-body {
   color: black;
   font-family: 'Merriweather', serif;
